@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Quizzy</string>
+    <string name="q_1">Who was the inventor of the steam engine?</string>
+    <string name="q1_answer">Watt is your answer ?</string>
+    <string name="q_2">Which of these are the three primary colors?</string>
+    <string name="red">RED</string>
+    <string name="blue">BLUE</string>
+    <string name="yellow">YELLOW</string>
+    <string name="q_3">Which planet is nearest the sun?</string>
+    <string name="mercury">Mercury</string>
+    <string name="earth">Earth</string>
+    <string name="q_4">Who was the first man to fly around the earth with a spaceship?</string>
+    <string name="gagarin">Gagarin</string>
+    <string name="tyson">Neil Tyson</string>
+    <string name="q_5">What color is cobalt ?</string>
+    <string name="green">GREEN</string>
+    <string name="submit_answers">SUBMIT ANSWERS</string>
+</resources>

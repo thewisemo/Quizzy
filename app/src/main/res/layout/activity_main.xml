@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.quizzy.MainActivity">
+    <!--Parent view group-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:orientation="vertical">
+        <!--question one head-->
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/q_1"
+            android:textColor="@color/colorPrimaryDark" />
+        <!--question one text entry-->
+        <EditText
+            android:id="@+id/q_one_edit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:focusable="true"
+            android:gravity="center_horizontal"
+            android:hint="@string/q1_answer"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/gray" />
+        <!--separator line-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark" />
+        <!--question two head-->
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/q_2"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+            <!--red checkbox-->
+            <CheckBox
+                android:id="@+id/red_check_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ff0000" />
+            <!--yellow checkbox-->
+            <CheckBox
+                android:id="@+id/yellow_check_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFF00" />
+            <!--blue checkbox-->
+            <CheckBox
+                android:id="@+id/blue_check_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000FF" />
+            <!--blue checkbox-->
+            <CheckBox
+                android:id="@+id/green_check_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#008000" />
+            <!--end q2-->
+        </LinearLayout>
+        <!--separator line-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark" />
+        <!--question three head-->
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/q_3"
+            android:textColor="@color/colorPrimaryDark" />
+        <!--start q3 radio group-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+            <!--earth radio btn-->
+            <RadioButton
+                android:id="@+id/radio_earth"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="onFirstRadioButtonClicked"
+                android:text="@string/earth" />
+            <!--mercury radio btn-->
+            <RadioButton
+                android:id="@+id/radio_mercury"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:onClick="onFirstRadioButtonClicked"
+                android:text="@string/mercury" />
+            <!--end q3-->
+        </RadioGroup>
+        <!--separator line-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark" />
+        <!--question four head-->
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/q_4"
+            android:textColor="@color/colorPrimaryDark" />
+        <!--start q4 radio group-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+            <!--earth radio btn-->
+            <RadioButton
+                android:id="@+id/radio_gagarin"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="onSecondRadioButtonClicked"
+                android:text="@string/gagarin" />
+            <!--mercury radio btn-->
+            <RadioButton
+                android:id="@+id/radio_tyson"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:onClick="onSecondRadioButtonClicked"
+                android:text="@string/tyson" />
+            <!--end q4-->
+        </RadioGroup>
+        <!--separator line-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark" />
+        <!--start q5-->
+        <!--question four head-->
+        <TextView
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/q_5"
+            android:textColor="@color/colorPrimaryDark" />
+        <!--radio group-->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity=""
+            android:orientation="vertical">
+            <!--earth radio btn-->
+            <RadioButton
+                android:id="@+id/radio_green"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:onClick="onThirdRadioButtonClicked"
+                android:text="@string/green" />
+            <!--mercury radio btn-->
+            <RadioButton
+                android:id="@+id/radio_blue"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:onClick="onThirdRadioButtonClicked"
+                android:text="@string/blue" />
+            <!--end q5-->
+        </RadioGroup>
+        <!--submit answers btn-->
+        <Button
+            android:id="@+id/submit_answers_btn"
+            style="?android:textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="showResult"
+            android:text="@string/submit_answers"
+            android:textColor="#fff" />
+    </LinearLayout>
+</ScrollView>
