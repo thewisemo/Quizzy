@@ -15,4 +15,10 @@
     <string name="q_5">What color is cobalt ?</string>
     <string name="green">GREEN</string>
     <string name="submit_answers">SUBMIT ANSWERS</string>
+    <string name="welcome_message">Hello, %1$s! You have %2$d new messages.</string>
+    <string name="bravo_message">Bravo! You Got %1$d Right Answers AND %2$d Wrong ones</string>
+    <string name="error_message">Your answer must match "James Watt"</string>
+    <string name="check_your_first_answer">Please check your 1st answer</string>
+    <string name="j_watt">James Watt</string>
+
 </resources>
