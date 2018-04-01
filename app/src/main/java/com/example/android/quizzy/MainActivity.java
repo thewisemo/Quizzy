@@ -1,7 +1,9 @@
 package com.example.android.quizzy;
 
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     // Declare an int variable to hold the quiz score.
     int userRightAnswersScore;
     int userWrongAnswersScore;
+    int allRightScore;
+    int allWrongScore;
     // Declare EditText object for text entry Question.
     EditText qOneUserInput;
     // Declare a String object and assign it for the right answer for text entry question.
@@ -47,9 +51,11 @@ public class MainActivity extends AppCompatActivity {
     // This @Override saves selected int values for screen rotation.
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save the user score initiative variable
-        savedInstanceState.putInt("QuizRightScore", userRightAnswersScore);
-        savedInstanceState.putInt("QuizWrongScore", userWrongAnswersScore);
+//        // Save the user score initiative variable
+        savedInstanceState.putInt("userRightAnswersScore", userRightAnswersScore);
+        savedInstanceState.putInt("userWrongAnswersScore", userWrongAnswersScore);
+        savedInstanceState.putInt("QuizRightScore", allRightScore);
+        savedInstanceState.putInt("QuizWrongScore", allWrongScore);
         // This super to always be called , so it can save the view hierarchy state "userRightAnswersScore changed value"
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -58,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setLogo(R.drawable.en_icon);
+        actionBar.setDisplayUseLogoEnabled(true);
     }
 
     // This method to show the Toast message with the user score when the Show Result button is pressed.
@@ -93,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
         earthRadIsWrong = earthRadBtn.isChecked();
         tysonRadIsWrong = tysonRadBtn.isChecked();
         greenRadIsWrong = greenRadBtn.isChecked();
-        // Declare an int variables for Right & Wrong Answers and assign their values to the return values from calculateScore method.
-        int allRightScore = calculateRightScore(rightEntry, redIsRight, blueIsRight, greenIsRight,
+        // Assign the int variables for Right & Wrong Answers and assign their values to the return values from calculateScore method.
+        allRightScore = calculateRightScore(redIsRight, blueIsRight, greenIsRight,
                 mercuryRadIsRight, gagarinRadIsRight, blueRadIsRight);
-        int allWrongScore = calculateWrongScore(earthRadIsWrong, tysonRadIsWrong, greenRadIsWrong, yellowIsWrong);
+        allWrongScore = calculateWrongScore(earthRadIsWrong, tysonRadIsWrong, greenRadIsWrong, yellowIsWrong);
         // create res object to get resources.
         Resources res = getResources();
         if (TextUtils.isEmpty(userAnswer)) {
@@ -106,31 +116,49 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
             return;
         }
+        // If the user text entry answer is wrong then update the wrong answers score with one,
+        // else right then update the right answers score with one.
         if (!rightEntry) {
             allWrongScore++;
-        }
+        } else allRightScore++;
         // Declare a String object for the bravo message with score calculated values.
         String bravoMessage = String.format(res.getString(R.string.bravo_message), allRightScore, allWrongScore);
-        // Create the Toast to be shown when the Show Result button is pressed.
-        Toast toast = Toast.makeText(this, bravoMessage, Toast.LENGTH_LONG);
-        toast.show();
+        // The Dialog to be shown when the Show Result button is pressed.
+        AlertDialog.Builder scoreResultDialog = new AlertDialog.Builder(MainActivity.this);
+        // Setting Dialog Title.
+        scoreResultDialog.setTitle(R.string.title);
+        // Setting Dialog Message with the score String value.
+        scoreResultDialog.setMessage(bravoMessage);
+        // Setting Icon to Dialog.
+        scoreResultDialog.setIcon(R.drawable.en_icon);
+        // Setting Positive "Ok" Btn.
+        scoreResultDialog.setPositiveButton(R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Congratulations dialog toast.
+                        Toast.makeText(getApplicationContext(),
+                                R.string.thanks, Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });
+        // Showing Alert Dialog.
+        scoreResultDialog.show();
         clearAnswers();
     }
 
     // This method to calculate the user score and take the answers @Params all right answers.
-    private int calculateRightScore(boolean rightEntry, boolean redIsRight, boolean blueIsRight, boolean greenIsRight,
+    private int calculateRightScore(boolean redIsRight, boolean blueIsRight, boolean greenIsRight,
                                     boolean mercuryRadIsRight, boolean gagarinRadIsRight, boolean blueRadIsRight) {
-        boolean[] rightAnswers = new boolean[7];
-        rightAnswers[0] = rightEntry;
-        rightAnswers[1] = redIsRight;
-        rightAnswers[2] = blueIsRight;
-        rightAnswers[3] = greenIsRight;
-        rightAnswers[4] = mercuryRadIsRight;
-        rightAnswers[5] = gagarinRadIsRight;
-        rightAnswers[6] = blueRadIsRight;
+        boolean[] rightAnswers = new boolean[6];
+        rightAnswers[0] = redIsRight;
+        rightAnswers[1] = blueIsRight;
+        rightAnswers[2] = greenIsRight;
+        rightAnswers[3] = mercuryRadIsRight;
+        rightAnswers[4] = gagarinRadIsRight;
+        rightAnswers[5] = blueRadIsRight;
         // this loop to check all the right answers in the rightAnswers boolean array
         // then update the userRightAnswersScore global variable with the number of true values.
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             if (rightAnswers[i]) {
                 userRightAnswersScore++;
             }
@@ -172,10 +200,12 @@ public class MainActivity extends AppCompatActivity {
 
     // This method to call saved data in onSaveInstanceState.
     public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // get  userRightAnswersScore saved in onSavedInstanceState key
+        userRightAnswersScore = savedInstanceState.getInt("userRightAnswersScore");
+        userWrongAnswersScore = savedInstanceState.getInt("userWrongAnswersScore");
+        allRightScore = savedInstanceState.getInt("QuizRightScore");
+        allWrongScore = savedInstanceState.getInt("QuizWrongScore");
         // Always call the superclass so it can restore the view hierarchy "userRightAnswersScore value"
         super.onRestoreInstanceState(savedInstanceState);
-        // get  userRightAnswersScore saved in onSavedInstanceState key
-        userRightAnswersScore = savedInstanceState.getInt("QuizRightScore");
-        userWrongAnswersScore = savedInstanceState.getInt("QuizWrongScore");
     }
 }

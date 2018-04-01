@@ -1,24 +1,26 @@
 <resources>
     <string name="app_name">Quizzy</string>
-    <string name="q_1">Who was the inventor of the steam engine?</string>
-    <string name="q1_answer">Watt is your answer ?</string>
-    <string name="q_2">Which of these are the three primary colors?</string>
+    <string name="q_1">Who was the inventor of the steam engine ?</string>
+    <string name="q1_answer">Your answer here</string>
+    <string name="q_2">Which of these are the three primary colors ?</string>
     <string name="red">RED</string>
     <string name="blue">BLUE</string>
     <string name="yellow">YELLOW</string>
-    <string name="q_3">Which planet is nearest the sun?</string>
+    <string name="q_3">Which planet is nearest the sun ?</string>
     <string name="mercury">Mercury</string>
     <string name="earth">Earth</string>
-    <string name="q_4">Who was the first man to fly around the earth with a spaceship?</string>
+    <string name="q_4">Who was the first man to fly around the earth with a spaceship ?</string>
     <string name="gagarin">Gagarin</string>
     <string name="tyson">Neil Tyson</string>
     <string name="q_5">What color is cobalt ?</string>
     <string name="green">GREEN</string>
     <string name="submit_answers">SUBMIT ANSWERS</string>
-    <string name="welcome_message">Hello, %1$s! You have %2$d new messages.</string>
-    <string name="bravo_message">Bravo! You Got %1$d Right Answers AND %2$d Wrong ones</string>
+    <string name="bravo_message">You Got %1$d Right Answers AND %2$d Wrong ones</string>
     <string name="error_message">Your answer must match "James Watt"</string>
     <string name="check_your_first_answer">Please check your 1st answer</string>
     <string name="j_watt">James Watt</string>
+    <string name="thanks">Thanks!</string>
+    <string name="ok">OK</string>
+    <string name="title">Here is your score</string>
 
 </resources>
