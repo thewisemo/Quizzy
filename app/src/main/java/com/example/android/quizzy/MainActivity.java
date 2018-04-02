@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     boolean blueIsRight;
     CheckBox green;
     boolean greenIsRight;
+
     // Declare questions 3,4,5 Radio buttons & Declare their boolean variables for.
     RadioButton earthRadBtn;
     boolean earthRadIsWrong;
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         redIsRight = red.isChecked();
         blueIsRight = blue.isChecked();
         greenIsRight = green.isChecked();
+
         yellowIsWrong = yellow.isChecked();
         // Assign the RadioButtons to their ids inside the activity_main.xml
         earthRadBtn = findViewById(R.id.radio_earth);
@@ -104,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
         tysonRadIsWrong = tysonRadBtn.isChecked();
         greenRadIsWrong = greenRadBtn.isChecked();
         // Assign the int variables for Right & Wrong Answers and assign their values to the return values from calculateScore method.
-        allRightScore = calculateRightScore(redIsRight, blueIsRight, greenIsRight,
-                mercuryRadIsRight, gagarinRadIsRight, blueRadIsRight);
+        allRightScore = calculateRightScore(mercuryRadIsRight, gagarinRadIsRight, blueRadIsRight);
         allWrongScore = calculateWrongScore(earthRadIsWrong, tysonRadIsWrong, greenRadIsWrong, yellowIsWrong);
         // create res object to get resources.
         Resources res = getResources();
@@ -119,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
         // If the user text entry answer is wrong then update the wrong answers score with one,
         // else right then update the right answers score with one.
         if (!rightEntry) {
+            allWrongScore++;
+        } else allRightScore++;
+        // if the three right answer for CheckBox question are not checked else checked.
+        if (!red.isChecked() && !green.isChecked() && !blue.isChecked()) {
             allWrongScore++;
         } else allRightScore++;
         // Declare a String object for the bravo message with score calculated values.
@@ -143,22 +148,21 @@ public class MainActivity extends AppCompatActivity {
                 });
         // Showing Alert Dialog.
         scoreResultDialog.show();
+        // Create the Toast to be shown when the Show Result button is pressed "Reviewer request".
+        Toast toast = Toast.makeText(this, bravoMessage, Toast.LENGTH_LONG);
+        toast.show();
         clearAnswers();
     }
 
     // This method to calculate the user score and take the answers @Params all right answers.
-    private int calculateRightScore(boolean redIsRight, boolean blueIsRight, boolean greenIsRight,
-                                    boolean mercuryRadIsRight, boolean gagarinRadIsRight, boolean blueRadIsRight) {
-        boolean[] rightAnswers = new boolean[6];
-        rightAnswers[0] = redIsRight;
-        rightAnswers[1] = blueIsRight;
-        rightAnswers[2] = greenIsRight;
-        rightAnswers[3] = mercuryRadIsRight;
-        rightAnswers[4] = gagarinRadIsRight;
-        rightAnswers[5] = blueRadIsRight;
+    private int calculateRightScore(boolean mercuryRadIsRight, boolean gagarinRadIsRight, boolean blueRadIsRight) {
+        boolean[] rightAnswers = new boolean[3];
+        rightAnswers[0] = mercuryRadIsRight;
+        rightAnswers[1] = gagarinRadIsRight;
+        rightAnswers[2] = blueRadIsRight;
         // this loop to check all the right answers in the rightAnswers boolean array
         // then update the userRightAnswersScore global variable with the number of true values.
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             if (rightAnswers[i]) {
                 userRightAnswersScore++;
             }
